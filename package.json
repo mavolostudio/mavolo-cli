@@ -1,8 +1,8 @@
 {
   "name": "mavolo-cli",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "Template from mavolo studio",
+  "main": "dist/cli.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
@@ -40,6 +40,6 @@
     "inquirer": "^9.2.22"
   },
   "bin": {
-    "mavolo-cli": "./dist/cli.js"
+    "mavolo": "./dist/cli.js"
   }
 }

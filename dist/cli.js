@@ -1,32 +1,26 @@
+#!/usr/bin/env node
 import { program } from 'commander';
 import inquirer from 'inquirer';
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectTemplates = {
-  web: [
-    {
-      nextjs: {
-        library: ['axios', 'react-query', 'shadcn', 'zustand', 'prisma'],
-      },
-      remix: {
-        library: ['axios', 'react-query'],
-      },
-      payload: {
-        library: ['tailwind'],
-      },
+  web: {
+    nextjs: {
+      library: ['axios', 'react-query', 'shadcn', 'zustand', 'prisma'],
     },
-  ],
-  mobile: [
-    {
-      'react-native': {
-        library: ['axios', 'react-query'],
-      },
-      expo: {
-        library: ['expo-camera', 'expo-permission'],
-      },
+    remix: {
+      library: ['axios', 'react-query'],
     },
-  ],
+    payload: {
+      library: ['tailwind'],
+    },
+  },
+  mobile: {
+    'react-native': {
+      library: ['axios', 'react-query'],
+    },
+    expo: {
+      library: ['expo-camera', 'expo-permission'],
+    },
+  },
 };
 async function promptForOptions() {
   const questions = [
@@ -35,7 +29,6 @@ async function promptForOptions() {
       name: 'projectType',
       message: 'What type of project would you like to create?',
       choices: [
-        { name: 'From Temaplte', value: 'template' },
         { name: 'Web Application', value: 'web' },
         { name: 'Mobile Application', value: 'mobile' },
       ],
@@ -53,16 +46,12 @@ async function promptForOptions() {
   return answers;
 }
 async function promptForTemplate(options) {
-  const templateChoices =
-    options.projectType === 'web'
-      ? Object.keys(projectTemplates.web[0]).map((key) => ({
-          name: key,
-          value: key,
-        }))
-      : Object.keys(projectTemplates.mobile[0]).map((key) => ({
-          name: key,
-          value: key,
-        }));
+  const templateChoices = Object.keys(
+    projectTemplates[options.projectType],
+  ).map((key) => ({
+    name: key,
+    value: key,
+  }));
   const templateQuestion = [
     {
       type: 'list',
@@ -76,7 +65,7 @@ async function promptForTemplate(options) {
 }
 async function promptForLibraries(options, selectedTemplate) {
   const libraries =
-    projectTemplates[options.projectType][0][selectedTemplate].library;
+    projectTemplates[options.projectType][selectedTemplate].library;
   const libraryQuestion = [
     {
       type: 'checkbox',

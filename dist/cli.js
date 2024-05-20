@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import chalk from 'chalk';
 import { program } from 'commander';
 import inquirer from 'inquirer';
 const projectTemplates = {
@@ -81,16 +82,27 @@ program
   .command('create')
   .description('Create a new project')
   .action(async () => {
+    console.log(`
+___________________________________________
+         
+         Wellcome to  ${chalk.bold.blue('Mavolo Studio')}
+            ${chalk.italic.gray('www.mavolostudio.com')}
+___________________________________________
+    `);
     const options = await promptForOptions();
     const selectedTemplate = await promptForTemplate(options);
     const selectedLibraries = await promptForLibraries(
       options,
       selectedTemplate,
     );
-    console.log(`Project type selected: ${options.projectType}`);
-    console.log(`Project name: ${options.projectName}`);
-    console.log(`Template selected: ${selectedTemplate}`);
-    console.log(`Libraries selected: ${selectedLibraries.join(', ')}`);
+    console.log(
+      `${chalk.blue(`
+    Project type selected: ${options.projectType}
+    Project name: ${options.projectName}
+    Template selected: ${selectedTemplate}
+    Libraries selected: ${selectedLibraries.join(', ')}
+    `)}`,
+    );
     // Additional logic to create the project folder and copy files can be added here
     // Uncomment the lines below to implement copying from a template directory
     /*

@@ -79,15 +79,29 @@ async function promptForLibraries(options, selectedTemplate) {
   return libraryAnswers.selectedLibraries;
 }
 program
+  .command('info')
+  .description('description')
+  .action(async () => {
+    console.log(`
+___________________________________________
+         
+         Wellcome to ${chalk.bold.blue('Mavolo Studio')}
+           ${chalk.italic('www.mavolostudio.com')}
+___________________________________________
+
+    `);
+  });
+program
   .command('create')
   .description('Create a new project')
   .action(async () => {
     console.log(`
 ___________________________________________
          
-         Wellcome to  ${chalk.bold.blue('Mavolo Studio')}
-            ${chalk.italic.gray('www.mavolostudio.com')}
+         Wellcome to ${chalk.bold.blue('Mavolo Studio')}
+           ${chalk.italic('www.mavolostudio.com')}
 ___________________________________________
+
     `);
     const options = await promptForOptions();
     const selectedTemplate = await promptForTemplate(options);

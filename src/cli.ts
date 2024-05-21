@@ -110,6 +110,22 @@ async function promptForLibraries(
 }
 
 program
+  .command('info')
+  .description('description')
+  .action(async () => {
+    console.log(
+      `
+___________________________________________
+         
+         Wellcome to ${chalk.bold.blue('Mavolo Studio')}
+           ${chalk.italic('www.mavolostudio.com')}
+___________________________________________
+
+    `,
+    );
+  });
+
+program
   .command('create')
   .description('Create a new project')
   .action(async () => {
@@ -117,8 +133,8 @@ program
       `
 ___________________________________________
          
-         Wellcome to  ${chalk.bold.blue('Mavolo Studio')}
-            ${chalk.italic.gray('www.mavolostudio.com')}
+         Wellcome to ${chalk.bold.blue('Mavolo Studio')}
+           ${chalk.italic('www.mavolostudio.com')}
 ___________________________________________
 
     `,

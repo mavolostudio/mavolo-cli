@@ -1,6 +1,6 @@
 {
   "name": "mavolo-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Template from mavolo studio",
   "main": "dist/cli.js",
   "type": "module",
